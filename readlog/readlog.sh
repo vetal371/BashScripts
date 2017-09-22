@@ -19,7 +19,6 @@ function isRunningMySelf () {
 
 	case $1 in 
 		"check")
-
 			if [ -f $PIDFILE ]; then
 				PID=`cat $PIDFILE`
 				printERROR "Script already running. PID: ${PID}. Please check or remove pid file"
@@ -35,12 +34,11 @@ function isRunningMySelf () {
 	esac	
 }
 
-
 function startReading () {
 	isRunningMySelf "check"
 
 	FILE=$1
-
+	
 	if [ ! -f $FILE ]; then
 		printERROR "Log file not found"
         	exit 1
@@ -73,10 +71,7 @@ function startReading () {
 			fi
 		fi
 	done
-
-
 }
-
 
 if [ $# -ne 1 ]; then
 	printERROR "Incorrect command line arguments"
@@ -97,5 +92,3 @@ case "$1" in
 		startReading $LOGFILE
 		;;
 esac
-
-
